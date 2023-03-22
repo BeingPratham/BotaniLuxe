@@ -47,6 +47,11 @@ dependencies:
   pinput: ^2.2.16
   json_annotation: ^4.8.0
   dots_indicator: ^2.1.0
+  marquee_widget: ^1.2.0
+  image_picker: ^0.8.7
+  http: ^0.13.5
+  badges: ^3.0.2
+  
 
 dev_dependencies:
   flutter_test:

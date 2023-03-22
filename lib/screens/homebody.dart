@@ -11,6 +11,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:http/http.dart' as http;
+import 'package:marquee_widget/marquee_widget.dart';
 
 import '../utils/dimensions.dart';
 import '../widgets/bigtext.dart';
@@ -115,7 +116,7 @@ class _HomeBodyState extends State<HomeBody> {
               ),
               Container(
                 margin: const EdgeInsets.only(bottom: 2),
-                child: SmallText(text: "Food Pairing"),
+                child: SmallText(text: "Plant Pairing"),
               )
             ],
           ),
@@ -274,7 +275,7 @@ class _HomeBodyState extends State<HomeBody> {
                 color: index.isEven ? Color(0xFF69c5df) : Color(0xFF9294cc),
                 image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: NetworkImage(widget.items[index]['n_image_url']))),
+                    image: NetworkImage(widget.items[index]['plant_img']))),
           ),
           Align(
             alignment: Alignment.bottomCenter,
@@ -299,7 +300,7 @@ class _HomeBodyState extends State<HomeBody> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    BigText(text: widget.items[index]['n_name']),
+                    BigText(text: widget.items[index]['plant_name']),
                     SizedBox(
                       height: Dimensions.height10,
                     ),
@@ -326,23 +327,8 @@ class _HomeBodyState extends State<HomeBody> {
                     SizedBox(
                       height: 10,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconAndText(
-                            icon: Icons.circle_sharp,
-                            text: "Normal",
-                            Iconcolor: Colors.green),
-                        IconAndText(
-                            icon: Icons.location_on,
-                            text: "50".toString() + " KM",
-                            Iconcolor: Colors.green),
-                        IconAndText(
-                            icon: Icons.access_time_rounded,
-                            text: "32Min",
-                            Iconcolor: Colors.green)
-                      ],
-                    )
+                    SmallText(text: widget.items[index]['small_info'])
+                    //
                   ],
                 ),
               ),

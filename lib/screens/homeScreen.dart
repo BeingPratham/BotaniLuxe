@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:math';
 // import 'package:geolocator/geolocator.dart';
+import 'package:client/screens/account.dart';
+import 'package:client/screens/addPosts.dart';
 import 'package:client/screens/cart.dart';
 import 'package:client/screens/homebody.dart';
 import 'package:client/screens/splashScreen.dart';
@@ -28,7 +30,7 @@ class _MyHomeState extends State<MyHome> {
   late Future myFuture;
   final auth = FirebaseAuth.instance;
   int i = 0;
-  var nur = FirebaseFirestore.instance.collection("nurseries");
+  var nur = FirebaseFirestore.instance.collection("plants");
   List<Map<String, dynamic>> items = [];
   fetchNurseries() async {
     var data = await nur.get();
@@ -38,6 +40,7 @@ class _MyHomeState extends State<MyHome> {
       templist.add(element.data());
     });
     setState(() {
+      print(templist);
       items = templist;
     });
   }
@@ -146,7 +149,10 @@ class _MyHomeState extends State<MyHome> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => AddPosts()));
+        },
         child: Icon(Icons.add),
         shape: CircleBorder(),
         backgroundColor: Colors.green[700],
@@ -217,21 +223,27 @@ class _MyHomeState extends State<MyHome> {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 10.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.person,
-                      color: Colors.white,
-                    ),
-                    Text(
-                      "Account",
-                      style: TextStyle(color: Colors.white),
-                    )
-                  ],
+              InkWell(
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 10.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.person,
+                        color: Colors.white,
+                      ),
+                      Text(
+                        "Account",
+                        style: TextStyle(color: Colors.white),
+                      )
+                    ],
+                  ),
                 ),
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => MyAccount()));
+                },
               ),
             ],
           )),
