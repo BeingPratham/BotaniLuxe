@@ -3,6 +3,7 @@ import 'dart:math';
 // import 'package:geolocator/geolocator.dart';
 import 'package:client/screens/account.dart';
 import 'package:client/screens/addPosts.dart';
+import 'package:client/screens/ai.dart';
 import 'package:client/screens/cart.dart';
 import 'package:client/screens/homebody.dart';
 import 'package:client/screens/showPosts.dart';
@@ -207,21 +208,27 @@ class _MyHomeState extends State<MyHome> {
                       .push(MaterialPageRoute(builder: (context) => MyCart()));
                 },
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.only(left: 20.0, top: 10.0, bottom: 10.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.camera,
-                      color: Colors.white,
-                    ),
-                    Text(
-                      "A.I.",
-                      style: TextStyle(color: Colors.white),
-                    )
-                  ],
+              InkWell(
+                onTap: (() => {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) => Ai()))
+                    }),
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      left: 20.0, top: 10.0, bottom: 10.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.camera,
+                        color: Colors.white,
+                      ),
+                      Text(
+                        "A.I.",
+                        style: TextStyle(color: Colors.white),
+                      )
+                    ],
+                  ),
                 ),
               ),
               InkWell(
