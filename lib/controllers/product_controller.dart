@@ -1,7 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 class CartController extends GetxController {
+  var credits = 0;
+  var document = FirebaseFirestore.instance
+      .collection('users')
+      .doc('1tU4VIjcCOIH59RSXVfH')
+      .snapshots();
   var total = 0.obs;
+
   var ItemLength = new Map().obs;
   var ItemPrice = new Map().obs;
   List currItems = [].obs;
@@ -27,5 +34,9 @@ class CartController extends GetxController {
     ItemLength[name]--;
     ItemPrice[price]--;
     currItems.removeLast();
+  }
+
+  void increaseCredit() {
+    credits += 5;
   }
 }

@@ -5,6 +5,7 @@ import 'package:client/screens/account.dart';
 import 'package:client/screens/addPosts.dart';
 import 'package:client/screens/cart.dart';
 import 'package:client/screens/homebody.dart';
+import 'package:client/screens/showPosts.dart';
 import 'package:client/screens/splashScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -151,7 +152,7 @@ class _MyHomeState extends State<MyHome> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => AddPosts()));
+              .push(MaterialPageRoute(builder: (context) => ShowPosts()));
         },
         child: Icon(Icons.add),
         shape: CircleBorder(),

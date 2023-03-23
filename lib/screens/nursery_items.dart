@@ -202,7 +202,7 @@ class _NurseryItemsState extends State<NurseryItems> {
                                                                             ?.docs[
                                                                         index][
                                                                     "item_price"] +
-                                                                "₹",
+                                                                " 5ire",
                                                             color: Colors.green,
                                                           ),
                                                           cartItems(

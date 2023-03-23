@@ -2,9 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
 import 'package:client/screens/nursery_items.dart';
+import 'package:client/screens/plant_details.dart';
 import 'package:get/get.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -12,6 +14,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:http/http.dart' as http;
 import 'package:marquee_widget/marquee_widget.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+// import 'package:carousel_pro/carousel_pro.dart';
 
 import '../utils/dimensions.dart';
 import '../widgets/bigtext.dart';
@@ -37,6 +41,16 @@ class _HomeBodyState extends State<HomeBody> {
   var _currPageValue = 0.0;
   double _scaleFactor = 0.8;
   double _height = Dimensions.pageViewContainer;
+  var curr_latitude = "0".obs;
+  var curr_longitude = "0".obs;
+  getloc() async {
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    curr_latitude.value = '${position.latitude}';
+    curr_longitude.value = '${position.longitude}';
+    print(curr_latitude);
+    print(curr_longitude);
+  }
 
   @override
   void initState() {
@@ -44,6 +58,7 @@ class _HomeBodyState extends State<HomeBody> {
 
     // this.fetchkitchen();
     // print(widget.kitchen);
+    getloc();
     pageController.addListener(() {
       setState(() {
         _currPageValue = pageController.page!;
@@ -68,17 +83,32 @@ class _HomeBodyState extends State<HomeBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          height: Dimensions.pageView,
-          // color: Colors.red,
-          child: PageView.builder(
-            controller: pageController,
-            itemCount: widget.items.length,
-            itemBuilder: (context, position) {
-              // print(widget.kitchen.length);
-              return _buildPageItem(position);
-            },
-          ),
+        Column(
+          children: [
+            Container(
+              height: Dimensions.pageView,
+              // color: Colors.red,
+              child: PageView.builder(
+                controller: pageController,
+                itemCount: widget.items.length,
+                itemBuilder: (context, position) {
+                  // print(widget.kitchen.length);
+                  return InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => PlantDetails(
+                                para1: widget.items[position]["para1"],
+                                para2: widget.items[position]["para2"],
+                                plant_name: widget.items[position]
+                                    ["plant_name"],
+                                para_img: widget.items[position]
+                                    ["plant_img"])));
+                      },
+                      child: _buildPageItem(position));
+                },
+              ),
+            ),
+          ],
         ),
         // ignore: unnecessary_new
         new DotsIndicator(
@@ -203,7 +233,25 @@ class _HomeBodyState extends State<HomeBody> {
                                               children: [
                                                 IconAndText(
                                                     icon: Icons.location_on,
-                                                    text: "50" + " KM",
+                                                    text: calculateDistance(
+                                                                double.parse(snapshot
+                                                                        .data
+                                                                        ?.docs[index][
+                                                                    "Latitude"]),
+                                                                double.parse(snapshot
+                                                                        .data
+                                                                        ?.docs[index]
+                                                                    [
+                                                                    "Longitude"]),
+                                                                double.parse(
+                                                                    curr_latitude
+                                                                        .toString()),
+                                                                double.parse(
+                                                                    curr_longitude
+                                                                        .toString()))
+                                                            .toStringAsFixed(1)
+                                                            .toString() +
+                                                        "KM",
                                                     Iconcolor: Colors.green),
                                                 IconAndText(
                                                     icon: Icons

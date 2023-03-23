@@ -27,63 +27,68 @@ class _MyCartState extends State<MyCart> {
         ),
         body: Stack(
           children: [
-            Obx(() => ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: cartController.ItemLength.length,
-                itemBuilder: ((context, index) {
-                  var keys = cartController.ItemLength.keys.toList();
-                  return cartController.ItemLength[keys[index]] > 0
-                      ? Container(
-                          height: 50,
-                          margin: new EdgeInsets.only(
-                              left: 10.0, bottom: 5.0, top: 10.0, right: 10.0),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.white),
-                          child: Padding(
-                            padding: EdgeInsets.all(10),
-                            child: Row(
-                              children: [
-                                Text(
-                                  keys[index].toString(),
-                                  style: TextStyle(
-                                      color: Colors.green, fontSize: 18),
-                                ),
-                                SizedBox(
-                                  width: 20,
-                                ),
-                                Text(
-                                  "x ${cartController.ItemLength[keys[index]].toString()}",
-                                  style: TextStyle(color: Colors.green),
-                                ),
-                                SizedBox(
-                                  width: 160,
-                                ),
-                                IconButton(
-                                    onPressed: () {
-                                      var price_key = cartController
-                                          .ItemPrice.keys
-                                          .toList();
+            Obx(() => SingleChildScrollView(
+                  child: ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: cartController.ItemLength.length,
+                      itemBuilder: ((context, index) {
+                        var keys = cartController.ItemLength.keys.toList();
+                        return cartController.ItemLength[keys[index]] > 0
+                            ? Container(
+                                height: 50,
+                                margin: new EdgeInsets.only(
+                                    left: 10.0,
+                                    bottom: 5.0,
+                                    top: 10.0,
+                                    right: 10.0),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Colors.white),
+                                child: Padding(
+                                  padding: EdgeInsets.all(10),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        keys[index].toString(),
+                                        style: TextStyle(
+                                            color: Colors.green, fontSize: 18),
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        "x ${cartController.ItemLength[keys[index]].toString()}",
+                                        style: TextStyle(color: Colors.green),
+                                      ),
+                                      Spacer(),
+                                      IconButton(
+                                          onPressed: () {
+                                            var price_key = cartController
+                                                .ItemLength.keys
+                                                .toList();
 
-                                      cartController.decrement(
-                                          index.toString(),
-                                          int.parse(
-                                              price_key[index].toString()),
-                                          keys[index].toString());
-                                      print(cartController.currItems);
-                                      // print(cartController.ItemPrice);
-                                    },
-                                    icon: Icon(
-                                      Icons.remove_circle_outline_outlined,
-                                      color: Colors.red,
-                                    ))
-                              ],
-                            ),
-                          ),
-                        )
-                      : Container();
-                }))),
+                                            print(price_key);
+                                            print(index);
+                                            cartController.decrement(
+                                                index.toString(),
+                                                1,
+                                                keys[index].toString());
+                                            // print(cartController.currItems);
+                                            // print(cartController.ItemPrice);
+                                          },
+                                          icon: Icon(
+                                            Icons
+                                                .remove_circle_outline_outlined,
+                                            color: Colors.red,
+                                          ))
+                                    ],
+                                  ),
+                                ),
+                              )
+                            : Container();
+                      })),
+                )),
             Padding(
               padding: const EdgeInsets.only(top: 555.0, left: 12.0),
               child: Container(
@@ -107,7 +112,7 @@ class _MyCartState extends State<MyCart> {
                         Text(
                           "Total Price:- " +
                               cartController.total.value.toString() +
-                              " ₹",
+                              " 5ire",
                           style: TextStyle(
                               color: Colors.green, fontWeight: FontWeight.w700),
                         ),
@@ -126,7 +131,7 @@ class _MyCartState extends State<MyCart> {
                                       Navigator.of(context).push(
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  OrderDetails()))
+                                                  OrderDetailss()))
                                     }
                                   else
                                     {
