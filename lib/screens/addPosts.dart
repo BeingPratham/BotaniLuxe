@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:client/widgets/bigtext.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -78,21 +79,14 @@ class _AddPostsState extends State<AddPosts> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    'Dour Dorcel',
-                    style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 24,
-                        color: Colors.black),
-                  ),
-                  Text(
-                    '#324',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14,
-                      color: Color(0xffA9ADB7),
-                    ),
-                  ),
+                  // const Text(
+                  //   'Post Your Experience',
+                  //   style: TextStyle(
+                  //       fontWeight: FontWeight.w700,
+                  //       fontSize: 24,
+                  //       color: Colors.black),
+                  // ),
+                  BigText(text: "Post Your Experience"),
                 ],
               ),
               const SizedBox(
@@ -123,7 +117,7 @@ class _AddPostsState extends State<AddPosts> {
               ),
               Align(
                 alignment: Alignment.centerLeft,
-                child: Text('About NFT',
+                child: Text('Add Description',
                     textAlign: TextAlign.left,
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
