@@ -1,16 +1,22 @@
-# client
+It is a decentralized Web3 application for nurseries where user can buy plants from nurseries and get rewards.
 
-A new Flutter project.
+#Techology used in this application:-
+1) Flutter
+2) Dart
+3) Firebase
+4) IPFS
+5) 5ire Coin
+6) Metamask
 
-## Getting Started
+#Features of this application:-
+1) It can show all the closest nurseries by detecting your locations.
+2) Phone OTP login is implemented so it's easy for user to sign in to their account.
+3) User can purchase plants from this app using 5ire coin.
+4) User can get all the information regarding specific plants in this app.
+5) User can also see the information on how much carbon footprint they saved after purchasing that plant.
+6) User can post their photo with caption so other people can see that and gets motivated to purchase the plants.
+7) Images are stored in IPFS so its in decentralized storage.
 
-This project is a starting point for a Flutter application.
+Here is the live demo of the application:-
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+[![Watch the video](https://blush-tropical-scallop-544.mypinata.cloud/ipfs/Qmb7WjswDv1piSBeRF6V8qk6x2SWFGFXGuu9jHL3DyqV8D)](https://www.youtube.com/watch?v=iwUv2am3fJ0)
